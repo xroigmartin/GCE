@@ -29,7 +29,7 @@
                         </h3>
                     <nav class="nav nav-masthead justify-content-center">
                         <a class="nav-link active" href="#">Dominio</a>
-                        <a class="nav-link" href="#">User</a>
+                        <a class="nav-link" href="#">Usuario</a>
                     </nav>
                     </div>
                 </header>
@@ -44,7 +44,16 @@
                     	th:object="${domain}">
                     	<input type="hidden" th:field="*{id}" id="id" />
                         <div class="container text-left">
-                            
+                            <div class="form-row">
+                            	<div class="col-3"></div>
+                                <div class="col-6">
+                                	<h4>
+                                    	<span th:text="${domain.id} ? 'Editar' : 'Nuevo'"></span>
+                                    	Dominio
+                                    </h4>
+                                </div>
+                                <div class="col-3"></div>
+                            </div>
                             <div class="form-row">
                                 <div class="col-3"></div>
                                 <div class="col-6">

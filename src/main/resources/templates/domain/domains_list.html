@@ -25,11 +25,11 @@
                 <header class="masthead mb-auto">
                     <div class="inner">
                         <h3 class="masthead-brand">
-                        <a href="#">GCE</a>
+                        <a href="../home.html" th:href="@{/}">GCE</a>
                         </h3>
                     <nav class="nav nav-masthead justify-content-center">
                         <a class="nav-link active" href="#">Dominio</a>
-                        <a class="nav-link" href="#">User</a>
+                        <a class="nav-link" href="#">Usuario</a>
                     </nav>
                     </div>
                 </header>
@@ -43,7 +43,8 @@
                         <div class="col-10">
                         </div>
                         <div class="col-2">
-                            <a href="#" class="btn btn-primary btn-sm">Nuevo dominio</a>
+                            <a href="edit_domain.html" class="btn btn-primary btn-sm"
+                            	th:href="@{/domain/new}">Nuevo dominio</a>
                         </div>
                     </div>
                     <div class="row">
@@ -56,21 +57,65 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="dominio : ${listadoDominios}">
-                                    <td th:text="${dominio.codigo}">código1</td>
-                                    <td th:text="${dominio.descripcion}">Esto es la descripcion del dominio código1</td>
+                                <tr th:each="domain : ${domainList}">
+                                    <td th:text="${domain.codeDomain}">código1</td>
+                                    <td th:text="${domain.description}">Esto es la descripcion del dominio código1</td>
                                     <td>
-                                        <a href="#" class="btn btn-primary btn-sm" role="button" th:href="@{/web/dominio/{id}(id=${dominio.id})}">Edita</a>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-id="1" data-codigo="código"
-                                                data-target="#enable-modal" th:data-id="${dominio.id}" th:data-codigo="${dominio.codigo}">Activar</button>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-id="1" data-codigo="código"
-                                                data-target="#disable-modal" th:data-id="${dominio.id}" th:data-codigo="${dominio.codigo}">Desactivar</button>
+                                        <a href="#" class="btn btn-primary btn-sm" role="button" th:href="@{/domain/{id}(id=${domain.id})}">Editar</a>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-id="1" data-code_domain="código" data-target="#enable-modal" 
+                                        		th:data-id="${domain.id}" th:data-code_domain="${domain.codeDomain}" th:hidden="${domain.enable}">
+                                        		Activar
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-id="1" data-code_domain="código" data-target="#disable-modal"
+                                        	th:data-id="${domain.id}" th:data-code_domain="${domain.codeDomain}" th:hidden="${!domain.enable}">
+                                        	Desactivar
+                                        </button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </main>
+                
+                <div class="modal fade" id="enable-modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Activar dominio</h4>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>¿Está usted seguro de activar el dominio?</p>
+								<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+								<a href="/domain/enable/" class="btn btn-success">Sí</a>
+							</div>
+						</div>
+			
+					</div>
+				</div>
+				
+				<div class="modal fade" id="disable-modal" tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h4 class="modal-title">Desactivar dominio</h4>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>¿Está usted seguro de desactivar el dominio?</p>
+								<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+								<a href="/domain/disable/" class="btn btn-danger">Sí</a>
+							</div>
+						</div>
+			
+					</div>
+				</div>
             </div>
         </div>
 
@@ -97,6 +142,8 @@
 			th:src="@{/webjars/popper.js/umd/jquery.min.js}"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 			th:href="@{/webjars/bootstrap/js/bootstrap.min.css}"></script>
+			
+	<script src="../../static/js/dominio/dominio.js" th:src="@{/js/dominio/dominio.js}"></script>
 
   </body>
 </html>
