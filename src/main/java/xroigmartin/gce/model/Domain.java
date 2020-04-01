@@ -8,8 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.Type;
+
+import xroigmartin.gce.custom.validation.domain.annotation.UniqueCodeDomain;
 
 @Entity
 public class Domain {
@@ -19,7 +23,10 @@ public class Domain {
 	@SequenceGenerator(name="domain_seq", sequenceName="domain_seq", allocationSize=1)
 	private Long id;
 	
-	@NotEmpty
+	@NotEmpty(message = "{domain.codeDomain.empty}")
+	@NotNull(message = "{domain.codeDomain.empty}")
+	@Size(min = 3, max=10, message="{domain.codeDomain.size}")
+	@UniqueCodeDomain
 	private String codeDomain;
 	
 	private String description;
@@ -44,6 +51,24 @@ public class Domain {
 		super();
 		this.id = id;
 		this.codeDomain = codeDomain;
+		this.enable = enable;
+	}
+	
+	public Domain(String codeDomain) {
+		super();
+		this.codeDomain = codeDomain;
+	}
+
+	public Domain(String codeDomain, Boolean enable) {
+		super();
+		this.codeDomain = codeDomain;
+		this.enable = enable;
+	}
+
+	public Domain(String codeDomain, String description, Boolean enable) {
+		super();
+		this.codeDomain = codeDomain;
+		this.description = description;
 		this.enable = enable;
 	}
 

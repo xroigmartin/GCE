@@ -59,8 +59,12 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="codeDomain" class="">Código del dominio</label>
-                                        <input type="text" class="form-control" id="codeDomain" name="codiDomain" placeholder="EJEM"
-                                        	th:field="*{codeDomain}"/>
+                                        <input type="text" class="form-control" id="codeDomain" name="codiDomain" placeholder="EJEM" required
+                                        	th:field="*{codeDomain}" th:classappend="${#fields.hasErrors('*{codeDomain}')} ? 'is-invalid'"/>
+                                        <span th:if="${#fields.hasErrors('codeDomain')}" th:errors="*{codeDomain}" 
+                                        		class="help-block invalid-feedback" id="codeDomain-error">
+                                        	Errores
+                                        </span>
                                     </div>
                                 </div>
                                 <div class="col-3"></div>
