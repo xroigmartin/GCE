@@ -43,6 +43,7 @@
                     	th:action="@{/domainValue/}"
                     	th:object="${domainValue}">
                     	<input type="hidden" th:field="*{id}" id="id" />
+                    	<input type="hidden" th:field="*{domainId}" id="domainId" />
                         <div class="container text-left">
                             <div class="form-row">
                             	<div class="col-3"></div>
@@ -58,11 +59,12 @@
                                 <div class="col-3"></div>
                                 <div class="col-6">
                                     <div class="form-group">
-                                        <label for="domainValue" class="">Valor del dominio</label>
-                                        <input type="text" class="form-control" id="domainValue" name="domainValue" placeholder="EJEM" required
-                                        	th:field="*{domainValue}" th:classappend="${#fields.hasErrors('*{domainValue}')} ? 'is-invalid'"/>
-                                        <span th:if="${#fields.hasErrors('domainValue')}" th:errors="*{domainValue}" 
-                                        		class="help-block invalid-feedback" id="domainValue-error">
+                                        <label for="value" class="">Valor del dominio</label>
+                                        <input type="text" class="form-control" id="value" name="value" placeholder="EJEM" required
+                                        	style="text-transform: uppercase;"
+                                        	th:field="*{value}" th:classappend="${#fields.hasErrors('*{value}')} ? 'is-invalid'"/>
+                                        <span th:if="${#fields.hasErrors('value')}" th:errors="*{value}" 
+                                        		class="help-block invalid-feedback" id="value-error">
                                         	Errores
                                         </span>
                                     </div>
@@ -76,7 +78,7 @@
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
                                         <button type="reset" class="btn btn-warning btn-sm ">Limpiar</button>
-                                        <a href="domains_value_list.html" class="btn btn-danger btn-sm" th:href="@{/domainValue/}">Cancelar</a>
+                                        <a href="domains_value_list.html" class="btn btn-danger btn-sm" th:href="@{/domainValue/domain/1}">Cancelar</a>
                                     </div>
                                 </div>
                                 <div class="col-3"></div>
@@ -85,7 +87,7 @@
                         </div>
                     </form>
                 </main>
-            </div>
+            </div> 
         </div>
 
         <footer class="mastfoot mt-auto">
