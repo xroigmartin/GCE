@@ -40,11 +40,13 @@
             <div class="col-12">
                 <main role="main" class="inner cover">
                     <div class="row mb-1">
-                        <div class="col-10">
+                        <div class="col-7">
                         </div>
                         <div class="col-2">
-                            <a href="edit_domain.html" class="btn btn-primary btn-sm"
-                            	th:href="@{/domain/new}">Nuevo dominio</a>
+                            <a href="form_domain_value.html" class="btn btn-primary btn-sm"
+                            	th:href="@{/domainValue/new}">Nuevo valor</a>
+                        </div>
+                        <div class="col-2">
                         </div>
                     </div>
                     <div class="row">
@@ -52,23 +54,20 @@
                             <thead>
                                 <tr>
                                     <th scope="col">Código</th>
-                                    <th scope="col">Descripción</th>
                                     <th scope="col">Operaciones</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr th:each="domain : ${domainList}">
-                                    <td th:text="${domain.codeDomain}">código1</td>
-                                    <td th:text="${domain.description}">Esto es la descripcion del dominio código1</td>
+                                <tr th:each="domainValue : ${domainValueList}">
+                                    <td th:text="${domain.domainValue}">valor1</td>
                                     <td>
-                                        <a href="#" class="btn btn-success btn-sm" role="button" th:href="@{/domainValue/domain/{id}(id=${domain.id})}">Valores</a>
-                                        <a href="#" class="btn btn-primary btn-sm" role="button" th:href="@{/domain/{id}(id=${domain.id})}">Editar</a>
-                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-id="1" data-code_domain="código" data-target="#enable-modal" 
-                                        		th:data-id="${domain.id}" th:data-code_domain="${domain.codeDomain}" th:hidden="${domain.enable}">
+                                        <a href="form_domain_value.html" class="btn btn-primary btn-sm" role="button" th:href="@{/domainValue/{id}(id=${domainValue.id})}">Editar</a>
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-id="1" data-code_domain="valor1" data-target="#enable-modal" 
+                                        		th:data-id="${domainValue.id}" th:data-domain_value="${domainValue.domainvalue}" th:hidden="${domainValue.enable}">
                                         		Activar
                                         </button>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-id="1" data-code_domain="código" data-target="#disable-modal"
-                                        	th:data-id="${domain.id}" th:data-code_domain="${domain.codeDomain}" th:hidden="${!domain.enable}">
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-id="1" data-code_domain="valor1" data-target="#disable-modal"
+                                        th:data-id="${domainValue.id}" th:data-domain_value="${domainValue.domainvalue}" th:hidden="!${domainValue.enable}">
                                         	Desactivar
                                         </button>
                                     </td>
@@ -82,16 +81,16 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h4 class="modal-title">Activar dominio</h4>
+								<h4 class="modal-title">Activar valor del dominio</h4>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body">
-								<p>¿Está usted seguro de activar el dominio?</p>
+								<p>¿Está usted seguro de activar este valor del dominio?</p>
 								<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-								<a href="/domain/enable/" class="btn btn-success">Sí</a>
+								<a href="/domainValue/enable/" class="btn btn-success">Sí</a>
 							</div>
 						</div>
 			
@@ -102,16 +101,16 @@
 					<div class="modal-dialog" role="document">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h4 class="modal-title">Desactivar dominio</h4>
+								<h4 class="modal-title">Desactivar valor del dominio</h4>
 								<button type="button" class="close" data-dismiss="modal"
 									aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
 							<div class="modal-body">
-								<p>¿Está usted seguro de desactivar el dominio?</p>
+								<p>¿Está usted seguro de desactivar este valor del dominio?</p>
 								<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-								<a href="/domain/disable/" class="btn btn-danger">Sí</a>
+								<a href="/domainValue/disable/" class="btn btn-danger">Sí</a>
 							</div>
 						</div>
 			

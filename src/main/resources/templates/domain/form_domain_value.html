@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Xavier Roig">
+
+    <!-- Bootstrap CSS -->
+	  <link rel="stylesheet" 
+		  href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		  th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <title>GCE</title>
+
+    <!-- Custom styles for this template -->
+    <link href="../../static/css/dominio/dominio.css" th:href="@{/css/dominio/dominio.css}"rel="stylesheet">
+
+  </head>
+  <body class="text-center">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <div class="row">
+            <div class="col-12">
+                <header class="masthead mb-auto">
+                    <div class="inner">
+                        <h3 class="masthead-brand">
+                        <a href="#">GCE</a>
+                        </h3>
+                    <nav class="nav nav-masthead justify-content-center">
+                        <a class="nav-link active" href="#">Dominio</a>
+                        <a class="nav-link" href="#">Usuario</a>
+                    </nav>
+                    </div>
+                </header>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-12">
+                <main role="main" class="inner cover">
+                    <form method="POST" action="#"
+                    	th:action="@{/domainValue/}"
+                    	th:object="${domainValue}">
+                    	<input type="hidden" th:field="*{id}" id="id" />
+                        <div class="container text-left">
+                            <div class="form-row">
+                            	<div class="col-3"></div>
+                                <div class="col-6">
+                                	<h4>
+                                    	<span th:text="*{id} ? 'Editar' : 'Nuevo'"></span>
+                                    	Valor del dominio
+                                    </h4>
+                                </div>
+                                <div class="col-3"></div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-3"></div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label for="domainValue" class="">Valor del dominio</label>
+                                        <input type="text" class="form-control" id="domainValue" name="domainValue" placeholder="EJEM" required
+                                        	th:field="*{domainValue}" th:classappend="${#fields.hasErrors('*{domainValue}')} ? 'is-invalid'"/>
+                                        <span th:if="${#fields.hasErrors('domainValue')}" th:errors="*{domainValue}" 
+                                        		class="help-block invalid-feedback" id="domainValue-error">
+                                        	Errores
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-3"></div>
+                            </div>
+
+                            <div class="form-row justify-content-end">
+                                <div class="col-6"></div>
+                                <div class="col-3">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
+                                        <button type="reset" class="btn btn-warning btn-sm ">Limpiar</button>
+                                        <a href="domains_value_list.html" class="btn btn-danger btn-sm" th:href="@{/domainValue/}">Cancelar</a>
+                                    </div>
+                                </div>
+                                <div class="col-3"></div>
+                            </div>
+
+                        </div>
+                    </form>
+                </main>
+            </div>
+        </div>
+
+        <footer class="mastfoot mt-auto">
+            <div class="inner">
+              <p>
+                <a class="github" href="https://github.com/xroigmartin/gce" target="_blank">
+                </a>
+                <a class="twitter" href="https://twitter.com/xroigmartin" target="_blank">
+                </a>
+                <a class="linkedin" href="https://www.linkedin.com/in/xavier-roig-martin-0a755249/" target="_blank">
+                </a>
+              </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+			th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+			th:src="@{/webjars/popper.js/umd/jquery.min.js}"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+			th:href="@{/webjars/bootstrap/js/bootstrap.min.css}"></script>
+
+  </body>
+</html>
