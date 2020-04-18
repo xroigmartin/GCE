@@ -34,19 +34,19 @@ public class DomainController {
 	public String getDominioById(@PathVariable Long id, Model model) {
 		Domain domain = domainService.getDomainbyId(id);
 		model.addAttribute("domain", domain);
-		return "domain/edit_domain";
+		return "domain/form_domain";
 	}
 
 	@GetMapping("/new")
 	public String newDomain(Model model) {
 		model.addAttribute("domain", new Domain());
-		return "domain/edit_domain";
+		return "domain/form_domain";
 	}
 
 	@PostMapping("/")
 	public String storeDominio(@Valid Domain domain, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			return "domain/edit_domain";
+			return "domain/form_domain";
 		} else {
 			Domain domainStore = null;
 			if (domain.getId() == null) {
