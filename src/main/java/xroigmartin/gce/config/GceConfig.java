@@ -12,7 +12,7 @@ public class GceConfig {
 	@Bean
 	public MessageSource messageResource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("classpath:errors");
+		messageSource.setBasename("classpath:messages");
 		messageSource.setDefaultEncoding("UTF-8");
 		return messageSource;
 	}

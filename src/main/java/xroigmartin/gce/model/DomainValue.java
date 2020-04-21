@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -23,7 +25,7 @@ public class DomainValue {
 	
 	@NotEmpty
 	@NotNull
-	@Size(min = 1, max = 10)
+	@Size(min = 1, max = 10, message="{domain.value.value.size}")
 	@Column(name="domainValue")
 	private String value;
 		

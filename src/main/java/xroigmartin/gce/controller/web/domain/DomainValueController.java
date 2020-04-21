@@ -1,13 +1,16 @@
 package xroigmartin.gce.controller.web.domain;
 
 import java.util.List;
+import java.util.Locale;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +24,9 @@ import xroigmartin.gce.service.DomainValueService;
 public class DomainValueController {
 	@Autowired
 	private DomainValueService domainValueService;
+	
+	@Autowired
+    MessageSource messageSource;
 
 	@GetMapping("/domain/{domainId}")
 	public String getAllDomainValue(@PathVariable Long domainId, Model model) {
@@ -44,6 +50,12 @@ public class DomainValueController {
 
 	@PostMapping("/")
 	public String storeDomainValue(@Valid DomainValue domainValue, BindingResult bindingResult, Model model) {
+		boolean existsValueForDomain = domainValueService.existsValueForDomain(domainValue.getValue(), domainValue.getDomainId());
+		if(existsValueForDomain) {
+			FieldError uniqueDomainValueError = new FieldError("domainValue", "value", 
+					messageSource.getMessage("domain.value.unique", new String[] {domainValue.getValue()}, Locale.getDefault()));
+			bindingResult.addError(uniqueDomainValueError);
+		}
 		if (bindingResult.hasErrors()) {
 			return "domain/form_domain_value";
 		} else {

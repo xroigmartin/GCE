@@ -11,4 +11,5 @@ public interface DomainValueService {
 	void storeDomainValue(DomainValue domainValue);
 	void disableDomainValueById(Long id);
 	void enableDomainValueById(Long id);
+	boolean existsValueForDomain(String value, Long domainId);
 }

@@ -44,4 +44,9 @@ public class DomainValueServiceImpl implements DomainValueService{
 		this.storeDomainValue(domainValue);
 	}
 
+	@Override
+	public boolean existsValueForDomain(String value, Long domainId) {
+		return this.domainValueRepository.findByValueAndDomainId(value, domainId).isPresent();
+	}
+
 }
