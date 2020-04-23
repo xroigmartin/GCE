@@ -43,7 +43,7 @@
                     	th:action="@{/domainValue/}"
                     	th:object="${domainValue}">
                     	<input type="hidden" th:field="*{id}" id="id" />
-                    	<input type="hidden" th:field="*{domainId}" id="domainId" />
+                    	<input type="hidden" th:field="*{domain.id}" id="domain.id" />
                         <div class="container text-left">
                             <div class="form-row">
                             	<div class="col-3"></div>
@@ -76,8 +76,8 @@
                                 <div class="col-6"></div>
                                 <div class="col-3">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-sm">Guardar</button>
-                                        <button type="reset" class="btn btn-warning btn-sm ">Limpiar</button>
+                                        <button type="submit" id="submit" name="submit" class="btn btn-primary btn-sm" disabled="disabled">Guardar</button>
+                                        <button type="reset" id="reset" name="reset" class="btn btn-warning btn-sm">Limpiar</button>
                                         <a href="domains_value_list.html" class="btn btn-danger btn-sm" th:href="@{/domainValue/domain/1}">Cancelar</a>
                                     </div>
                                 </div>
@@ -110,9 +110,11 @@
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 			th:src="@{/webjars/jquery/jquery.min.js}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-			th:src="@{/webjars/popper.js/umd/jquery.min.js}"></script>
+			th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-			th:href="@{/webjars/bootstrap/js/bootstrap.min.css}"></script>
+			th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+			
+	<script src="../../static/js/dominio/dominio.js" th:src="@{/js/dominio/dominio.js}"></script>
 
   </body>
 </html>

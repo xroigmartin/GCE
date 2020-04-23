@@ -50,7 +50,7 @@ public class DomainValueController {
 
 	@PostMapping("/")
 	public String storeDomainValue(@Valid DomainValue domainValue, BindingResult bindingResult, Model model) {
-		boolean existsValueForDomain = domainValueService.existsValueForDomain(domainValue.getValue(), domainValue.getDomainId());
+		boolean existsValueForDomain = domainValueService.existsValueForDomain(domainValue.getValue(), domainValue.getDomain().getId());
 		if(existsValueForDomain) {
 			FieldError uniqueDomainValueError = new FieldError("domainValue", "value", 
 					messageSource.getMessage("domain.value.unique", new String[] {domainValue.getValue()}, Locale.getDefault()));

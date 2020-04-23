@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -29,8 +31,9 @@ public class DomainValue {
 	@Column(name="domainValue")
 	private String value;
 		
-	@Column(name="id_domain")
-	private Long domainId = 1L;
+	@ManyToOne
+	@JoinColumn(name = "id_domain")
+	private Domain domain;
 	
 	@NotNull
 	@Column(columnDefinition = "TINYINT")
@@ -41,26 +44,26 @@ public class DomainValue {
 		super();
 	}
 	
-	public DomainValue(String value, Long domainId) {
+	public DomainValue(String value, Domain domain) {
 		super();
 		this.value = value;
-		this.domainId = domainId;
+		this.domain = domain;
 	}
 
 
-	public DomainValue(String value, Long domainId, Boolean enable) {
+	public DomainValue(String value, Domain domain, Boolean enable) {
 		super();
 		this.value = value;
-		this.domainId = domainId;
+		this.domain = domain;
 		this.enable = enable;
 	}
 
 
-	public DomainValue(Long id, String value, Long domainId, Boolean enable) {
+	public DomainValue(Long id, String value, Domain domain, Boolean enable) {
 		super();
 		this.id = id;
 		this.value = value;
-		this.domainId = domainId;
+		this.domain = domain;
 		this.enable = enable;
 	}
 
@@ -81,12 +84,12 @@ public class DomainValue {
 		this.value = value;
 	}
 
-	public Long getDomainId() {
-		return domainId;
+	public Domain getDomain() {
+		return domain;
 	}
 
-	public void setDomainId(Long domainId) {
-		this.domainId = domainId;
+	public void setDomain(Domain domain) {
+		this.domain = domain;
 	}
 
 	public Boolean getEnable() {
@@ -99,7 +102,7 @@ public class DomainValue {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(domainId, enable, id, value);
+		return Objects.hash(domain, enable, id, value);
 	}
 
 	@Override
@@ -111,13 +114,13 @@ public class DomainValue {
 		if (getClass() != obj.getClass())
 			return false;
 		DomainValue other = (DomainValue) obj;
-		return Objects.equals(domainId, other.domainId) && Objects.equals(enable, other.enable)
+		return Objects.equals(domain, other.domain) && Objects.equals(enable, other.enable)
 				&& Objects.equals(id, other.id) && Objects.equals(value, other.value);
 	}
 
 	@Override
 	public String toString() {
-		return "DomainValue [id=" + id + ", value=" + value + ", domainId=" + domainId + ", enable=" + enable + "]";
+		return "DomainValue [id=" + id + ", value=" + value + ", domain=" + domain + ", enable=" + enable + "]";
 	}
 	
 }

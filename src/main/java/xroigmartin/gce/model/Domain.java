@@ -1,11 +1,13 @@
 package xroigmartin.gce.model;
 
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -34,6 +36,9 @@ public class Domain {
 	@Column(columnDefinition = "TINYINT")
 	@Type(type = "org.hibernate.type.NumericBooleanType")
 	private Boolean enable = true;
+	
+	@OneToMany(mappedBy = "domain")
+	private List<DomainValue> domainValues;
 
 	public Domain() {
 		super();
@@ -102,6 +107,14 @@ public class Domain {
 
 	public void setEnable(Boolean enable) {
 		this.enable = enable;
+	}
+
+	public List<DomainValue> getDomainValues() {
+		return domainValues;
+	}
+
+	public void setDomainValues(List<DomainValue> domainValues) {
+		this.domainValues = domainValues;
 	}
 
 	@Override

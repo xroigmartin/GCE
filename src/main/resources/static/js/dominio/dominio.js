@@ -11,7 +11,7 @@ $('#disable-modal').on('show.bs.modal', function (event) {
     var a = modal.find('.modal-body a')[0];
     a.href = a.href + recipient_id;
 
-})
+});
 
 //Mostrar datos en el modal de activar dominio
 $('#enable-modal').on('show.bs.modal', function (event) {
@@ -26,7 +26,7 @@ $('#enable-modal').on('show.bs.modal', function (event) {
     var a = modal.find('.modal-body a')[0];
     a.href = a.href + recipient_id;
 
-})
+});
 
 //Mostrar datos en el modal de desactivar dominio
 $('#disable-modal').on('show.bs.modal', function (event) {
@@ -41,7 +41,7 @@ $('#disable-modal').on('show.bs.modal', function (event) {
     var a = modal.find('.modal-body a')[0];
     a.href = '/domainValue/disable/' + recipient_id;
 
-})
+});
 
 //Mostrar datos en el modal de activar dominio
 $('#enable-modal').on('show.bs.modal', function (event) {
@@ -56,4 +56,13 @@ $('#enable-modal').on('show.bs.modal', function (event) {
     var a = modal.find('.modal-body a')[0];
     a.href = '/domainValue/enable/' + recipient_id;
 
-})
+});
+
+$(document).ready(function() {
+    $(':input[type="submit"]').prop('disabled', true);
+    $('input[type="text"]').keyup(function() {
+       if($(this).val() != '') {
+          $(':input[type="submit"]').prop('disabled', false);
+       }
+    });
+});
