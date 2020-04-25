@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS gce.domain_value_message (
 	id INT(10) COMMENT 'Id of message in domain',
-	id_domain_value NOT NULL INT(10) COMMENT 'Domain value identifier',
+	id_domain_value INT(10) NOT NULL COMMENT 'Domain value identifier',
 	lang INT(10) NOT NULL COMMENT 'id of langange in domain LANG',
 	message VARCHAR(150) NOT NULL COMMENT 'Text of domain value',
     CONSTRAINT
