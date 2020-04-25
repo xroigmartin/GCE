@@ -1,1 +1,2 @@
 INSERT INTO gce.domain (id, code_domain, description, enable) VALUES(NEXTVAL(gce.domain_seq), 'sexo', 'Sexo de las personas', TRUE);
+INSERT INTO gce.domain (id, code_domain, description, enable) VALUES(NEXTVAL(gce.domain_seq), 'idioma', 'Idiomas que pertime la aplicación', TRUE);
