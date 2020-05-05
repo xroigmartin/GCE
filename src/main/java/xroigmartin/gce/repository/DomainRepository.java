@@ -8,5 +8,5 @@ import xroigmartin.gce.model.Domain;
 
 public interface DomainRepository extends JpaRepository<Domain, Long>{
 
-	Optional<Domain> findDomainByCodeDomain(String codeDomain);
+	Optional<Domain> findByCodeDomain(String codeDomain);
 }

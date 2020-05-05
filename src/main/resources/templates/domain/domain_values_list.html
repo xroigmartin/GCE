@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-2">
                             <a href="form_domain_value.html" class="btn btn-primary btn-sm"
-                            	th:href="@{/domainValue/new}">Nuevo valor</a>
+                            	th:href="@{/domainValue/new/{domainId}(domainId=${domainId})}">Nuevo valor</a>
                         </div>
                         <div class="col-2">
                         </div>
@@ -63,11 +63,11 @@
                                     <td>
                                         <a href="form_domain_value.html" class="btn btn-primary btn-sm" role="button" th:href="@{/domainValue/{id}(id=${domainValue.id})}">Editar</a>
                                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-id="1" data-value="valor1" data-target="#enable-modal" 
-                                        		th:data-id="${domainValue.id}" th:data-value="${domainValue.value}" th:hidden="${domainValue.enable}">
-                                        		Activar
+                                        	th:data-id="${domainValue.id}" th:data-value="${domainValue.value}" th:hidden="${domainValue.enable}">
+                                        	Activar
                                         </button>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-id="1" data-value="valor1" data-target="#disable-modal"
-                                        th:data-id="${domainValue.id}" th:data-value="${domainValue.value}" th:hidden="!${domainValue.enable}">
+                                        	th:data-id="${domainValue.id}" th:data-value="${domainValue.value}" th:hidden="!${domainValue.enable}">
                                         	Desactivar
                                         </button>
                                     </td>

@@ -61,7 +61,7 @@
                                     <div class="form-group">
                                         <label for="value" class="">Valor del dominio</label>
                                         <input type="text" class="form-control" id="value" name="value" placeholder="EJEM" required
-                                        	style="text-transform: uppercase;"
+                                        	style="text-transform: uppercase;" autocomplete="false"
                                         	th:field="*{value}" th:classappend="${#fields.hasErrors('*{value}')} ? 'is-invalid'"/>
                                         <span th:if="${#fields.hasErrors('value')}" th:errors="*{value}" 
                                         		class="help-block invalid-feedback" id="value-error">
@@ -71,14 +71,50 @@
                                 </div>
                                 <div class="col-3"></div>
                             </div>
-
+                            <div class="form-row">
+                                <div class="col-3"></div>
+                                <div class="col-6">
+                                    <nav>
+                                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-traducciones" role="tab" aria-controls="nav-traducciones" aria-selected="true" style="background-color: #C0E0DE; ">Traducciones</a>
+                                        </div>
+                                    </nav>
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="nav-traducciones"  role="tabpanel" aria-labelledby="nav-traducciones-tab" >
+                                            <table class="table table-hover" >
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Idioma</th>
+                                                        <th scope="col">Literal</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr th:each="message, itemStat : *{messages}">
+                                                        <td>
+                                                            <input type="hidden" th:field=*{messages[__${itemStat.index}__].id} id="domainValueMessage.id" />
+                                                            <input type="hidden" th:field=*{messages[__${itemStat.index}__].lang} id="domainValueMessage.lang" />
+                                                            <input type="hidden" th:field=*{messages[__${itemStat.index}__].domainValue.id} id="domainValue.id" />
+                                                            <label th:text=*{messages[__${itemStat.index}__].langText}></label>
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" id="literal" name="literal" class="form-control" autocomplete="false" placeholder="Literal" value="Literal" required
+                                                            	th:field="*{messages[__${itemStat.index}__].message}">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-3"></div>
+                            </div>
                             <div class="form-row justify-content-end">
                                 <div class="col-6"></div>
                                 <div class="col-3">
                                     <div class="form-group">
                                         <button type="submit" id="submit" name="submit" class="btn btn-primary btn-sm" disabled="disabled">Guardar</button>
                                         <button type="reset" id="reset" name="reset" class="btn btn-warning btn-sm">Limpiar</button>
-                                        <a href="domains_value_list.html" class="btn btn-danger btn-sm" th:href="@{/domainValue/domain/1}">Cancelar</a>
+                                        <a href="domains_value_list.html" class="btn btn-danger btn-sm" th:href="@{/domainValue/domain/{domainId}(domainId=*{domain.id})}">Cancelar</a>
                                     </div>
                                 </div>
                                 <div class="col-3"></div>

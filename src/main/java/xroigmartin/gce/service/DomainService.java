@@ -8,6 +8,7 @@ public interface DomainService {
 
 	List<Domain> findAllDomains();
 	Domain getDomainbyId(Long id);
+	Domain findByCodeDomain(String codeDomain);
 	void storeDomain(Domain domain);
 	void deleteDomainById(Long id);
 	void disableDomainById(Long id);

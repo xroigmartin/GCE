@@ -1,16 +1,17 @@
 package xroigmartin.gce.model;
 
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -34,6 +35,9 @@ public class DomainValue {
 	@ManyToOne
 	@JoinColumn(name = "id_domain")
 	private Domain domain;
+	
+	@OneToMany(mappedBy = "domainValue",cascade = CascadeType.PERSIST)
+	List<DomainValueMessage> messages;
 	
 	@NotNull
 	@Column(columnDefinition = "TINYINT")
@@ -98,6 +102,14 @@ public class DomainValue {
 
 	public void setEnable(Boolean enable) {
 		this.enable = enable;
+	}
+
+	public List<DomainValueMessage> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<DomainValueMessage> messages) {
+		this.messages = messages;
 	}
 
 	@Override

@@ -19,6 +19,11 @@ public class DomainServiceImpl implements DomainService {
 	public List<Domain> findAllDomains() {
 		return domainRepository.findAll();
 	}
+	
+	@Override
+	public Domain findByCodeDomain(String codeDomain) {
+		return domainRepository.findByCodeDomain(codeDomain).orElse(null);
+	}
 
 	@Override
 	public Domain getDomainbyId(Long id) {

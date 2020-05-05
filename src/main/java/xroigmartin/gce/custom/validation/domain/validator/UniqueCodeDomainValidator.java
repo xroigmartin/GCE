@@ -21,7 +21,7 @@ public class UniqueCodeDomainValidator implements ConstraintValidator<UniqueCode
 	}
 	
 	public boolean isValid(String codeDomain, ConstraintValidatorContext context) {
-		Optional<Domain> optional = domainRepository.findDomainByCodeDomain(codeDomain);
+		Optional<Domain> optional = domainRepository.findByCodeDomain(codeDomain);
 		return !optional.isPresent();
 	}
 }

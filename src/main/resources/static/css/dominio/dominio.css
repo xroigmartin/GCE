@@ -118,3 +118,7 @@ body {
 .table tr td {
   border-bottom: 1px solid #c0e0de; /* Change the color you want to set */
 }
+
+input#literal:first-letter{
+  text-transform: capitalize;
+}
